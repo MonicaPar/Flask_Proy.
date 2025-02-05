@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi Carrito</title>
+    </head>
+    <body>
+        <h1>Mi Carrito de Compras</h1>
+
+        {% if carrito %}
+            <ul>
+                {% for item in carrito %}
+                    <li>
+                        <img src="{{ url_for('static', filename='images/' + item.imagen) }}" alt="{{ item.nombre }}" width="50">
+                        <strong>{{ item.nombre }}</strong> - ${{ item.precio }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <p><strong>Total: ${{ total }}</strong></p>
+            <a href="{{ url_for('vaciar') }}">Vaciar carrito</a>
+        {% else %}
+            <p>No tienes productos en el carrito.</p>
+        {% endif %}
+        
+        <br>
+        <a href="{{ url_for('index') }}">Volver a la tienda</a>
+    </body>
+</html>

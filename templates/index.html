@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi Ecommerce</title>
+    </head>
+    <body>
+        <h1>Bienvenido a Mi Tienda</h1>
+
+        <h2>Productos</h2>
+        <div>
+            {% for producto in productos %}
+                <div style="border: 1px solid #ddd; padding: 10px; margin: 10px;">
+                    <img src="{{ url_for('static', filename='images/' + producto.imagen) }}" alt="{{ producto.nombre }}" width="100">
+                    <h3>{{ producto.nombre }}</h3>
+                    <p>Precio: Q{{ producto.precio }}</p>
+                    <a href="{{ url_for('agregar', producto_id=producto.id) }}">Añadir al carrito</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <br>
+        <a href="{{ url_for('carrito') }}">Ir al carrito</a>
+    </body>
+</html>
